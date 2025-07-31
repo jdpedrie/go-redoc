@@ -2,12 +2,14 @@ package redoc
 
 import (
 	"bytes"
-	"embed"
 	"errors"
+	"io/fs"
 	"net/http"
 	"os"
 	"strings"
 	"text/template"
+
+	_ "embed"
 )
 
 // ErrSpecNotFound error for when spec file not found
@@ -18,7 +20,7 @@ type Redoc struct {
 	DocsPath    string
 	SpecPath    string
 	SpecFile    string
-	SpecFS      *embed.FS
+	SpecFS      fs.ReadFileFS
 	Title       string
 	Description string
 }
